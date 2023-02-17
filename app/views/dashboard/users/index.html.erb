@@ -1,0 +1,42 @@
+<div class="w-75">
+
+    <h1>利用者一覧</h1>
+
+    <%= form_with url: dashboard_users_path, model: @user, local: true do |f| %>
+        <div>
+            <%= f.label :family_name %>
+            <%= f.text_field :family_name %>
+        </div>
+        <div>
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name %>
+        </div>
+        <div>
+            <%= f.label :family_name_reading %>
+            <%= f.text_field :family_name_readeing %>
+        </div>
+        <div>
+            <%= f.label :first_name_reading %>
+            <%= f.text_field :first_name_reading %>
+        </div>
+
+        <div>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+        </div>
+        <div>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        </div>
+        <div>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+        </div>
+        <div>
+            <%= f.submit "Create User" %>
+        </div>
+    <% end %>
+
+
+
+</div>

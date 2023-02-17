@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'top#index'
 
+  get "dashboard", :to => "dashboard#index"
+
   devise_for :users, controllers: {
     passwords: 'users/passwords',
     registrations: 'users/registrations',
@@ -9,5 +11,10 @@ Rails.application.routes.draw do
     # unlocks: 'users/unlocks',
     # omniauth_callbacks: 'users/omniauth_callbacks',
   }
+
+  namespace :dashboard do
+    resources :users, only: [:index, :destroy, :create]
+  end
+
   resources :users, only: [:show]
 end
