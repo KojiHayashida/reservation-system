@@ -7,9 +7,10 @@ class Ability
     user ||= User.new   # ログインしていない場合は、からユーザーを用意し判定に用いる
 
     if user.admin?
-      can :manage, :User
+      can :manage, :all
     else
-      can [:edit, :update], :User
+      can :manege, User
+      cannot [:new, :create, :destroy], :User
     end
   end
 end
