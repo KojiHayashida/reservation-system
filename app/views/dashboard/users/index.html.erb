@@ -37,6 +37,28 @@
         </div>
     <% end %>
 
+    <!-- TODO 利用者絞り込みフォーム作成 -->
 
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th scope="col" class="w-25">ID</th>
+          <th scope="col">名前</th>
+          <th scope="col">メールアドレス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>   <!--Question id 降順にするには？-->
+        <tr>
+          <th scope="row"><%= user.id %></td>
+          <td><%= user.full_name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to "編集", edit_dashboard_user_path(user) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 </div>

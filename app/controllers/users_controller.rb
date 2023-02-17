@@ -1,6 +1,6 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController       ## マイページのプログラム
   before_action :set_user, only: [:show]
-  before_action :authenticate_user!, only:[show]
+  before_action :authenticate_user!, only: [:show]
 
   def show
   end
@@ -9,4 +9,5 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(current_user.id)
     end
+
 end

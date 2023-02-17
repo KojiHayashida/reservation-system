@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   }
 
   namespace :dashboard do
-    resources :users, only: [:index, :destroy, :create]
+    resources :users, only: [:index, :edit, :update, :destroy, :create,]
   end
 
   resources :users, only: [:show]
