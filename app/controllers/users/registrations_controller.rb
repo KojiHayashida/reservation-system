@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   load_and_authorize_resource
-  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
+  prepend_before_action :require_no_authentication, only: [:cancel]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
