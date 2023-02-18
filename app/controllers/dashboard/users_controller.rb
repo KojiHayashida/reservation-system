@@ -1,13 +1,17 @@
 class Dashboard::UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :authenticate_admin!
-    before_action :set_user, only: [:edit, :update]
+    before_action :set_user, only: [:show, :edit, :update]
 
     layout "dashboard/dashboard"
 
 
     def index
         @users = User.display_list(params[:pages]).order(id: :desc)
+    end
+
+    def show
+        @reservations = Reservation.where("user_id = ?", params[:id]).order(day: :asc)
     end
 
     def new

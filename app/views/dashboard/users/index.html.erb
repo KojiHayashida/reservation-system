@@ -45,13 +45,16 @@
           <th scope="col" class="w-25">ID</th>
           <th scope="col">名前</th>
           <th scope="col">メールアドレス</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>   <!--Question id 降順にするには？-->
         <tr>
-          <th scope="row"><%= user.id %></td>
-          <td><%= user.full_name %></td>
+          <td scope="row"><%= user.id %></td>
+          <td>
+            <%= link_to user.full_name, dashboard_user_path(user) %>
+          </td>
           <td><%= user.email %></td>
           <td>
             <%= link_to "編集", edit_dashboard_user_path(user) %>
