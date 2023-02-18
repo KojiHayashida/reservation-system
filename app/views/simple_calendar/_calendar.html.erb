@@ -1,0 +1,51 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+    <span class="calendar-title">
+      <%= start_date.year %></span>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>  <!-- TODO:1週間単位で送れるようにする -->
+    <% reservations = Reservation.reservations_after_three_month %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <% date_range.each_slice(14) do |week| %>
+        <%= content_tag :tr, class: calendar.tr_classes_for(week) do %>
+          <td></td>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day.strftime("%-m/%-d\n #t('date.abbr_day_names')[%w]"), sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day.strftime("%-m/%-d\n (#{I18n.t('date.abbr_day_names')[day.wday]})"), sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <td></td>
+        <% end %>
+      <% end %>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(14) do |week| %>
+        <% times.each do |time| %>
+          <tr>
+            <td><%= time %></td>
+            <% week.each do |day| %>
+              <td>
+              <% if check_reservation(reservations, day, time) %>
+                <%= '×' %>
+              <% else %>
+                <%= link_to new_reservation_path(day: day, time: time) do %>
+                  <%= '○' %>
+                <% end %>
+              <% end %>
+            </td>
+            <% end %>
+            <td><%= time %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -15,6 +15,9 @@
                   <li class="nav-link">
                     <%= link_to "マイページ", user_path(current_user.id) %>
                   </li>
+                  <li class="nav-link">
+                    <%= link_to "予約画面", reservations_path %>
+                  </li>
                   <% if current_user&.admin? %>
                     <li class="nav-link">
                      <%= link_to "管理者ページ", dashboard_path %>

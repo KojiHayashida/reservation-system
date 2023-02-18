@@ -36,6 +36,14 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# 追加のgem
+gem 'bootstrap', '~> 4.6.0'
+gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'jquery-datetimepicker-rails'
+gem "simple_calendar", "~> 2.0"
+gem 'dotenv-rails'
+
 gem 'devise'
 gem 'cancancan'
 
