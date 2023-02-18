@@ -26,7 +26,7 @@ class Dashboard::UsersController < ApplicationController
 
     def update
         @user.update(user_params)
-        redirect_to root    ## TODO edit ページにリダイレクト
+            redirect_to dashboard_users_path, notice: 'User was successfully updated.'
     end
 
    def destroy
@@ -34,7 +34,7 @@ class Dashboard::UsersController < ApplicationController
 
    private
         def set_user
-            @user = User.find(current_user.id)
+            @user = User.find(params[:id])
         end
 
         def authenticate_admin!
