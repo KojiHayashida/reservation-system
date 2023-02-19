@@ -33,12 +33,12 @@
             <td><%= time %></td>
             <% week.each do |day| %>
               <td>
-              <% if check_reservation(reservations, day, time) %>
-                <%= '×' %>
-              <% else %>
+              <% if can_reserve?(reservations, current_user.id, day, time) %>
                 <%= link_to new_reservation_path(day: day, time: time) do %>
                   <%= '○' %>
                 <% end %>
+              <% else %>
+                <%= '×' %>
               <% end %>
             </td>
             <% end %>

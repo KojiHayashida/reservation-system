@@ -9,7 +9,7 @@ module ReservationsHelper
                  "18:20"]
     end
 
-    def check_reservation(reservations, day, time)
+    def check_reservation(reservations, user_id, day, time)     ## findだと予約が無い場合nillがかえってしまう
         result = false
         reservations_count = reservations.count
 
@@ -23,5 +23,15 @@ module ReservationsHelper
             return result if result
           end
         return result
+    end
+
+    #  # 予約可能か判定する
+    def can_reserve?(reservations, user_id, day, time)
+      if reservations.any?{|r| r[:user_id] == user_id && r[:day] == day.strftime("%Y-%m-%d") && r[:time] == time}
+        return false
+      elsif
+        count = reservations.count { |r| r[:day] == day.strftime("%Y-%m-%d") && r[:time] == time }
+        return count < 2
+      end
     end
 end

@@ -7,7 +7,7 @@
         <tr>
             <th scope="col">日付</th>
             <th scope="col">時間</th>
-            <th scope="col">削除</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <body>
@@ -15,7 +15,9 @@
             <tr>
                 <td><%= reservation.day %></td>
                 <td><%= reservation.time %></td>
-                <td></td>
+                <td>
+                    <%= link_to "削除", dashboard_reservation_path(reservation), method: :delete %>
+                </td>
             </tr>
         <% end %>
     </body>

@@ -44,7 +44,7 @@
                    <tr>
                    <td class="time-column"><%= time %></td>
                    <% if reservation.time == time %>
-                    <td><%= reservation.user.full_name %></td>
+                    <td><%= link_to reservation.user.full_name, dashboard_user_path(reservation.user_id) %></td>
                    <% end %>
                    </tr>
               <% end %>

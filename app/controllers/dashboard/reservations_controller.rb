@@ -12,7 +12,8 @@ class Dashboard::ReservationsController < ApplicationController
     end
 
     def destroy
-
+        @reservation = Reservation.find(params[:id])
+        @reservation.destroy  ## TODO 元の利用者予約一覧のページにリダイレクトするようにしたい
     end
 
     private
