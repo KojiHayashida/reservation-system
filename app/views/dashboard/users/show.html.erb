@@ -11,6 +11,7 @@
         </tr>
     </thead>
     <body>
+    <!-- Question newを経由せず直接createに飛んでる => reservation.require()が出来ない-->
     <h4>新規予約作成フォーム</h4>
     <div class="col-12 mt-3 content">
         <%= form_with(model: @reservation,url: dashboard_reservations_path, local: true) do |f| %>

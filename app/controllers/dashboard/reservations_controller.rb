@@ -21,7 +21,7 @@ class Dashboard::ReservationsController < ApplicationController
     def create
         @reservation = Reservation.new(reservation_params)
         if @reservation.save
-          redirect_to reservation_path @reservation.id
+            redirect_back(fallback_location: root_path)
         else
           render :index
         end
