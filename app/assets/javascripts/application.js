@@ -10,7 +10,23 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require popper
+//= require bootstrap
+//
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//
+//  Datetimepicker関連
+//= require jquery.datetimepicker
+//= require moment/ja.js
+
+
+$(function(){
+    $('.datetimepicker').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+    });
+});
