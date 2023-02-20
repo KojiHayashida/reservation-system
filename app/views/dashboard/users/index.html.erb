@@ -43,6 +43,19 @@
 
     <!-- TODO 利用者絞り込みフォーム作成 -->
   <h3>利用者一覧</h3>
+
+  <div class="w-75">
+    <%= form_with url: dashboard_users_path, method: :get, local: true do |f| %>
+      <div class="d-flex flex-inline form-group">
+        <div class="d-flex align-items-center">
+          ID・氏名など
+        </div>
+        <%= f.text_area :keyword, value: @keyword, class: "form-controll ml-2 w-50" %>
+      </div>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+
     <table class="table mt-5">
       <thead>
         <tr>
@@ -62,6 +75,9 @@
           <td><%= user.email %></td>
           <td>
             <%= link_to "編集", edit_dashboard_user_path(user) %>
+          </td>
+          <td>
+            <%= link_to "削除", dashboard_user_path(user), method: :delete, data: {confirm: "削除したデータは二度と戻せません\n削除しますか？"} %>
           </td>
         </tr>
         <% end %>

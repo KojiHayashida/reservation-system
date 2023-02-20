@@ -11,9 +11,31 @@ class Dashboard::ReservationsController < ApplicationController
         end
     end
 
+    def new
+        @reservation = Reservation.new
+        @day = params[:day]
+        @time = params[:time]
+        @start_time = DateTime.parse(@day + " " + @time)
+      end
+
+    def create
+        @reservation = Reservation.new(reservation_params)
+        if @reservation.save
+          redirect_to reservation_path @reservation.id
+        else
+          render :index
+        end
+    end
+
+
     def destroy
         @reservation = Reservation.find(params[:id])
-        @reservation.destroy  ## TODO 元の利用者予約一覧のページにリダイレクトするようにしたい
+        if @reservation.destroy
+            flash[:success] = "予約を削除しました"
+            redirect_to dashboard_users_path()        ## リダイレクト先を利用者予約一覧のページにしたい
+          else
+            render :index
+          end
     end
 
     private
@@ -21,5 +43,9 @@ class Dashboard::ReservationsController < ApplicationController
             unless current_user&.admin?
                redirect_to root_path, alert:  "You are not authorized to access this page."
             end
+        end
+
+        def reservation_params
+            params.permit(:day, :time, :user_id, :start_time)
         end
 end

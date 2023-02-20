@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :users, only: [:index, :show, :edit, :update, :destroy, :create]
-    resources :reservations, only:[:index, :destroy]
+    resources :reservations, only:[:index, :create ,:destroy]
   end
 
   resources :users, only: [:show]

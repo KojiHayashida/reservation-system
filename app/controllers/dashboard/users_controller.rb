@@ -7,7 +7,13 @@ class Dashboard::UsersController < ApplicationController
 
 
     def index
-        @users = User.display_list(params[:pages]).order(id: :desc)
+        if params[:keyword].present?
+            @keyword = params[:keyword].strip
+            @users = User.search_information(@keyword).display_list(params[:pages])
+        else
+            @keyword = ""
+            @users = User.display_list(params[:pages])
+        end
     end
 
     def show
@@ -18,7 +24,7 @@ class Dashboard::UsersController < ApplicationController
         @user = User.new
     end
 
-    def create                              ## TODO 入力パラメータが正しい形式かどうかチェックをしたい
+    def create
         @user = User.new(user_params)
         @user.save
         redirect_to dashboard_users_path,  notice: "User was successfully created."
@@ -33,7 +39,13 @@ class Dashboard::UsersController < ApplicationController
             redirect_to dashboard_users_path, notice: 'User was successfully updated.'
     end
 
-   def destroy
+   def destroy          ##　関連する予約の削除もしないといけない？？
+        @user = User.find(params[:id])
+        if @user.destroy
+           redirect_to dashboard_users_path,  notice: "User was successfully deleted."
+        else
+            render :show
+        end
    end
 
    private
@@ -47,9 +59,8 @@ class Dashboard::UsersController < ApplicationController
             end
         end
 
-        def user_params
-         params.require(:user).permit(:family_name, :first_name, :family_name_reading, :first_name_reading,
+        def user_params         # require(:user)を外したら動くようになったけど大丈夫だろうか？
+         params.permit(:family_name, :first_name, :family_name_reading, :first_name_reading,
                                   :email, :password, :password_confirmation)
         end
-
   end
