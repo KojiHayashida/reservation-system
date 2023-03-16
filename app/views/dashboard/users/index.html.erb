@@ -1,42 +1,41 @@
 <div class="w-75">
 
+  <%= notice %>
+
   <h1>利用者一覧</h1>
 
   <div class="w-75">
     <h3>新規利用者登録フォーム</h3>
     <%= form_with url: dashboard_users_path, model: @user, local: true do |f| %>
-      <div>
-          <%= f.label :family_name %>
-          <%= f.text_field :family_name %>
-      </div>
-      <div>
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name %>
-      </div>
-      <div>
-          <%= f.label :family_name_reading %>
-          <%= f.text_field :family_name_reading %>
-      </div>
-      <div>
-          <%= f.label :first_name_reading %>
-          <%= f.text_field :first_name_reading %>
-      </div>
+    <div>
+      <%= f.label :family_name,'姓' %>
+      <%= f.text_field :family_name %>
+    </div>
+    <div>
+      <%= f.label :first_name, '名' %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <%= f.label :family_name_reading, '姓(かな)' %>
+      <%= f.text_field :family_name_reading %>
+    </div>
+    <div>
+      <%= f.label :first_name_reading,'名(かな)' %>
+      <%= f.text_field :first_name_reading %>
+    </div>
 
-      <div>
-          <%= f.label :email %>
-          <%= f.email_field :email %>
-      </div>
-      <div>
-          <%= f.label :password %>
-          <%= f.password_field :password %>
-      </div>
-      <div>
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation %>
-      </div>
-      <div>
-          <%= f.submit "Create User" %>
-      </div>
+    <div>
+      <%= f.label :email,  'メールアドレス' %>
+      <%= f.email_field :email %>
+    </div>
+    <div>
+      <%= f.label :password, 'パスワード' %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, 'パスワード(確認)' %>
+      <%= f.password_field :password_confirmation %>
+    </div>
     <% end %>
   </div>
 

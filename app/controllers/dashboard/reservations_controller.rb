@@ -41,7 +41,7 @@ class Dashboard::ReservationsController < ApplicationController
     private
         def authenticate_admin!
             unless current_user&.admin?
-               redirect_to root_path, alert:  "You are not authorized to access this page."
+               redirect_to root_path, alert:  "アクセス権限がありません."
             end
         end
 

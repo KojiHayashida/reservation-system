@@ -20,9 +20,9 @@
     .simple-calendar {
         width: auto;
 
-        .td{
-            width: auto;
-        }
+        // .td{
+        //     width: auto;
+        // }
 
 
         .wday-0 {
@@ -31,6 +31,27 @@
         .wday-6 {
             color: blue;
         }
+
+    .table{
+        text-align: center;
+        vertical-align: middle;
+
+
+        .time_column{
+            width: 100px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .reservation_status_box{
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .reservation_line{
+            height: 100px;
+        }
+    }
 
 
     }

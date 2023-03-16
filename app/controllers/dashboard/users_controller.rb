@@ -27,7 +27,7 @@ class Dashboard::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         @user.save
-        redirect_to dashboard_users_path,  notice: "User was successfully created."
+        redirect_to dashboard_users_path,  notice: "ユーザー作成に成功しました."
     end
 
     def edit
@@ -36,13 +36,13 @@ class Dashboard::UsersController < ApplicationController
 
     def update
         @user.update(user_params)
-            redirect_to dashboard_users_path, notice: 'User was successfully updated.'
+            redirect_to dashboard_users_path, notice: 'ユーザー情報の編集が完了しました'
     end
 
    def destroy          ##　関連する予約の削除もしないといけない？？
         @user = User.find(params[:id])
         if @user.destroy
-           redirect_to dashboard_users_path,  notice: "User was successfully deleted."
+           redirect_to dashboard_users_path,  notice: "ユーザー削除に成功しました."
         else
             render :show
         end

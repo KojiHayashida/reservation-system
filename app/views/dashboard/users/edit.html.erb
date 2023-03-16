@@ -1,32 +1,32 @@
 
 <%= form_with url: dashboard_user_path, model: @user, local: true do |f| %>
 <div>
-    <%= f.label :family_name %>
+    <%= f.label :family_name,'姓' %>
     <%= f.text_field :family_name %>
 </div>
 <div>
-    <%= f.label :first_name %>
+    <%= f.label :first_name, '名' %>
     <%= f.text_field :first_name %>
 </div>
 <div>
-    <%= f.label :family_name_reading %>
+    <%= f.label :family_name_reading, '姓(かな)' %>
     <%= f.text_field :family_name_reading %>
 </div>
 <div>
-    <%= f.label :first_name_reading %>
+    <%= f.label :first_name_reading,'名(かな)' %>
     <%= f.text_field :first_name_reading %>
 </div>
 
 <div>
-    <%= f.label :email %>
+    <%= f.label :email,  'メールアドレス' %>
     <%= f.email_field :email %>
 </div>
 <div>
-    <%= f.label :password %>
+    <%= f.label :password, 'パスワード' %>
     <%= f.password_field :password %>
 </div>
 <div>
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation, 'パスワード(確認)' %>
     <%= f.password_field :password_confirmation %>
 </div>
 <div>
