@@ -21,7 +21,7 @@ class Dashboard::ReservationsController < ApplicationController
     def create
         @reservation = Reservation.new(reservation_params)
         if @reservation.save
-            redirect_back(fallback_location: root_path)
+            redirect_back(fallback_location: dashboard_user_path)
         else
           render :index
         end
@@ -32,7 +32,7 @@ class Dashboard::ReservationsController < ApplicationController
         @reservation = Reservation.find(params[:id])
         if @reservation.destroy
             flash[:success] = "予約を削除しました"
-            redirect_to dashboard_users_path()        ## リダイレクト先を利用者予約一覧のページにしたい
+            redirect_back(fallback_location: dashboard_user_path)  ## TODO ridirect先がおかしい
           else
             render :index
           end

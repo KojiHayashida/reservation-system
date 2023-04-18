@@ -39,23 +39,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  protected
+    protected
 
-  def current_user_is_admin?
-    user_signed_in? && current_user.has_role?(:admin)
-  end
+    def update_resource(resource, params)
+     resource.update_without_current_password(params)
+    end
+
+    def current_user_is_admin?
+      user_signed_in? && current_user.has_role?(:admin)
+    end
+
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_sign_up_params
+     devise_parameter_sanitizer.permit(
+       :sign_up, keys: [:family_name, :first_name, :family_name_reading, :first_name_reading, :email, :password ])
+    end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(
-      :sign_up, keys: [:family_name, :first_name, :family_name_reading, :first_name_reading, :email, :password ])
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(
-      :account_update, keys: [:family_name, :first_name, :family_name_reading, :first_name_reading, :email, :password ])
-  end
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(
+       :account_update, keys: [:family_name, :first_name, :family_name_reading, :first_name_reading, :email, :password ])
+    end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

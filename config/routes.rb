@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'top#index'
+  root 'reservations#index'
 
   get "dashboard", :to => "dashboard#index"
 
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   }
 
   namespace :dashboard do
-    resources :users, only: [:index, :show, :edit, :update, :destroy, :create]
+    resources :users, only: [:index, :show, :edit, :update, :destroy, :new, :create]
     resources :reservations, only:[:index, :create ,:destroy]
   end
 

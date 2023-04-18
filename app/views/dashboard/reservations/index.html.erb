@@ -26,7 +26,7 @@
             <% @reservations.each do |reservation| %>
             <tr>
                 <th scope="row"><%= reservation.id %></th>
-                <td><%= reservation.user.full_name %></td>
+                <td><%= link_to reservation.user.full_name, dashboard_user_path(reservation.user_id) %></td>
                 <td><%= reservation.day %></td>
                 <td><%= reservation.time %></td>
             </tr>
@@ -35,22 +35,6 @@
     </table>
 
 
-    <table class="table">
-        <thead>
-        </thead>
-        <tbody>
-            <% @reservations.each do |reservation| %>
-                <% times.each do |time| %>
-                   <tr>
-                   <td class="time-column"><%= time %></td>
-                   <% if reservation.time == time %>
-                    <td><%= link_to reservation.user.full_name, dashboard_user_path(reservation.user_id) %></td>
-                   <% end %>
-                   </tr>
-              <% end %>
-            <% end %>
-        </tbody>
-    </table>
 
 
 </div>

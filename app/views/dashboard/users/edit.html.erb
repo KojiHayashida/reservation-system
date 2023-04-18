@@ -1,35 +1,34 @@
+<%= form_with url: dashboard_user_path, model: @user, local: true, method: :put do |f| %>
+  <div class="mb-3">
+    <%= f.label :family_name,'姓', class: 'form-label' %>
+    <%= f.text_field :family_name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :first_name, '名', class: 'form-label' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :family_name_reading, '姓(かな)', class: 'form-label' %>
+    <%= f.text_field :family_name_reading, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :first_name_reading,'名(かな)', class: 'form-label' %>
+    <%= f.text_field :first_name_reading, class: 'form-control' %>
+  </div>
 
-<%= form_with url: dashboard_user_path, model: @user, local: true do |f| %>
-<div>
-    <%= f.label :family_name,'姓' %>
-    <%= f.text_field :family_name %>
-</div>
-<div>
-    <%= f.label :first_name, '名' %>
-    <%= f.text_field :first_name %>
-</div>
-<div>
-    <%= f.label :family_name_reading, '姓(かな)' %>
-    <%= f.text_field :family_name_reading %>
-</div>
-<div>
-    <%= f.label :first_name_reading,'名(かな)' %>
-    <%= f.text_field :first_name_reading %>
-</div>
-
-<div>
-    <%= f.label :email,  'メールアドレス' %>
-    <%= f.email_field :email %>
-</div>
-<div>
-    <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password %>
-</div>
-<div>
-    <%= f.label :password_confirmation, 'パスワード(確認)' %>
-    <%= f.password_field :password_confirmation %>
-</div>
-<div>
-    <%= f.submit "Update User" %>
-</div>
+  <div class="mb-3">
+    <%= f.label :email,  'メールアドレス', class: 'form-label' %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <!-- <div class="mb-3">
+    <%= f.label :password, 'パスワード', class: 'form-label' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password_confirmation, 'パスワード(確認)', class: 'form-label' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div> -->
+  <div class="mb-3">
+    <%= f.submit "Update User", class: 'btn btn-primary' %>
+  </div>
 <% end %>

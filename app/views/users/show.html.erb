@@ -23,10 +23,12 @@
             </thead>
             <tbody>
               <% @user_reservations.each do |user_reservation| %>
-              <td><%= user_reservation.day %> <%= user_reservation.time %></td>
+              <tr>
+                <td><%= user_reservation.day %> <%= user_reservation.time %></td>
               <td>
                 <%= link_to '削除', reservation_path(user_reservation.id), method: :delete, data: {confirm: "削除してよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください"} %>
               </td>
+              </tr>
               <% end %>
             </tbody>
           </table>

@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # 追加のgem
+gem 'rails-i18n', '~> 5.1'
 gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails'
 gem 'momentjs-rails'

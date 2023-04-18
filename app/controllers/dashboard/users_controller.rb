@@ -1,7 +1,7 @@
 class Dashboard::UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :authenticate_admin!
-    before_action :set_user, only: [:show, :edit, :update]
+    before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     layout "dashboard/dashboard"
 
@@ -20,14 +20,13 @@ class Dashboard::UsersController < ApplicationController
         @reservations = Reservation.where("user_id = ?", params[:id]).order(day: :asc)
     end
 
-    def new
-        @user = User.new
-    end
-
     def create
         @user = User.new(user_params)
-        @user.save
-        redirect_to dashboard_users_path,  notice: "ユーザー作成に成功しました."
+        if @user.save
+            redirect_to dashboard_users_path, notice: "ユーザー作成に成功しました."
+        else
+            render :new
+        end
     end
 
     def edit
@@ -35,12 +34,11 @@ class Dashboard::UsersController < ApplicationController
     end
 
     def update
-        @user.update(user_params)
-            redirect_to dashboard_users_path, notice: 'ユーザー情報の編集が完了しました'
+        @user.update_without_password(user_params)
+        redirect_to dashboard_users_path, notice: 'ユーザー情報の編集が完了しました'
     end
 
    def destroy          ##　関連する予約の削除もしないといけない？？
-        @user = User.find(params[:id])
         if @user.destroy
            redirect_to dashboard_users_path,  notice: "ユーザー削除に成功しました."
         else
@@ -49,18 +47,19 @@ class Dashboard::UsersController < ApplicationController
    end
 
    private
-        def set_user
-            @user = User.find(params[:id])
-        end
 
-        def authenticate_admin!
-            unless current_user&.admin?
-                redirect_to root_path, alert:  "You are not authorized to access this page."
-            end
-        end
+    def set_user
+        @user = User.find(params[:id])
+    end
 
-        def user_params         # require(:user)を外したら動くようになったけど大丈夫だろうか？
-         params.permit(:family_name, :first_name, :family_name_reading, :first_name_reading,
-                                  :email, :password, :password_confirmation)
+    def authenticate_admin!
+        unless current_user&.admin?
+            redirect_to root_path, alert:  "You are not authorized to access this page."
         end
+    end
+
+    def user_params
+     params.require(:user).permit(:family_name, :first_name, :family_name_reading, :first_name_reading,
+                              :email, :password, :password_confirmation)
+    end
   end
