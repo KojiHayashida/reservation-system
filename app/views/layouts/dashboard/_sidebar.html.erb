@@ -1,12 +1,17 @@
 <div class="container ml-3">
-    <h4>利用者管理</h4>
+    <div class="d-flex flex-column">
+        <label class="sidebar-category-label">
+            <%= link_to "新規利用者登録", new_dashboard_user_path %>
+        </label>
+    </div>
     <div class="d-flex flex-column">
         <label class="sidebar-category-label">
             <%= link_to "利用者一覧", dashboard_users_path %>
         </label>
     </div>
-    <h4>予約一覧</h4>
+    <div class="d-flex flex-column">
         <label class="sidebar-category-label">
             <%= link_to "予約一覧", dashboard_reservations_path %>
         </label>
+    </div>
 </div>

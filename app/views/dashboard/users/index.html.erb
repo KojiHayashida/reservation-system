@@ -2,53 +2,8 @@
 
   <%= notice %>
 
-  <h1>利用者一覧</h1>
-
-  <div class="w-75">
-    <h3>新規利用者登録フォーム</h3>
-    <%= form_with  model: User.new, url: dashboard_users_path ,local: true, class: "form-horizontal" do |f| %>
-      <div class="form-group row">
-        <div class="col-sm-6">
-          <%= f.label :family_name,'姓', class: "control-label" %>
-          <%= f.text_field :family_name, class: "form-control" %>
-        </div>
-        <div class="col-sm-6">
-          <%= f.label :first_name, '名', class: "control-label" %>
-          <%= f.text_field :first_name, class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <div class="col-sm-6">
-          <%= f.label :family_name_reading, '姓(かな)', class: "control-label" %>
-          <%= f.text_field :family_name_reading, class: "form-control" %>
-        </div>
-        <div class="col-sm-6">
-          <%= f.label :first_name_reading,'名(かな)', class: "control-label" %>
-          <%= f.text_field :first_name_reading, class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email, 'メールアドレス', class: "control-label" %>
-        <%= f.email_field :email, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password, 'パスワード', class: "control-label" %>
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation, 'パスワード(確認)', class: "control-label" %>
-        <%= f.password_field :password_confirmation, class: "form-control" %>
-      </div>
-      <%= f.submit '登録する', class: "btn btn-primary" %>
-    <% end %>
-  </div>
-
-
-
     <!-- TODO 利用者絞り込みフォーム作成 -->
-  <h3>利用者一覧</h3>
+  <h2>利用者一覧</h2>
 
 
     <%= form_with url: dashboard_users_path, method: :get, local: true, class: "input-group" do |f| %>
