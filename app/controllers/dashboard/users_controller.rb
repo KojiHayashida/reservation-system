@@ -24,12 +24,15 @@ class Dashboard::UsersController < ApplicationController
 
     end
 
+    def new
+        @user = User.new
+    end
+
     def create
-        user = User.new
-        user.assign_attributes(user_params)
-        user.password = 'password'
-        user.password_confirmation = 'password'
-        user.save
+        @user = User.new(user_params)
+        @user.password = 'password'
+        @user.password_confirmation = 'password'
+        @user.save!
         redirect_to dashboard_users_path, notice: "ユーザー作成に成功しました."
     end
 
@@ -39,7 +42,7 @@ class Dashboard::UsersController < ApplicationController
     end
 
    def destroy          ##　関連する予約の削除もしないといけない？？
-        if @user.destroy
+        if @user.destroy!
            redirect_to dashboard_users_path,  notice: "ユーザー削除に成功しました."
         else
             render :show
@@ -62,4 +65,4 @@ class Dashboard::UsersController < ApplicationController
      params.require(:user).permit(:family_name, :first_name, :family_name_reading, :first_name_reading,
                               :email, :password, :password_confirmation)
     end
-  end
+end

@@ -1,8 +1,8 @@
 <div class="col-12 text-center title">
-    <h1><%= @user.full_name %>さんの予約一覧</h1>
+    <h1><%= @user.full_name %> さんの予約一覧</h1>
 </div>
 
-<table class="table">
+<table class="table mt-3">
     <thead>
         <tr>
             <th scope="col">日付</th>
@@ -11,10 +11,11 @@
         </tr>
     </thead>
     <body>
-    <!-- Question newを経由せず直接createに飛んでる => reservation.require()が出来ない-->
-    <h4>新規予約作成フォーム</h4>
-    <div class="col-12 mt-3 content">
-        <%= form_with(model: @reservation,url: dashboard_reservations_path, local: true) do |f| %>
+
+    <div class="col-12 mt-5 mb-5 content">
+        <h3>新規予約作成フォーム</h3>
+        <hr>
+        <%= form_with model: @reservation,url: dashboard_reservations_path, local: true do |f| %>
             <div class="day form-group">
                 <%= f.label :day, '日付' %>
                 <%= f.text_field :day, class:  "form-control datetimepicker" %>
@@ -37,15 +38,18 @@
         <% end %>
     </div>
 
-    <h2>予約一覧</h2>
-        <% @reservations.each do |reservation| %>
-            <tr>
-                <td><%= reservation.day %></td>
-                <td><%= reservation.time %></td>
-                <td>
-                    <%= link_to "削除", dashboard_reservation_path(reservation), method: :delete %>
-                </td>
-            </tr>
+    <div class="col-12 mt-3 content">
+        <h3>予約一覧</h3>
+        <hr>
+            <% @reservations.each do |reservation| %>
+                <tr>
+                    <td><%= reservation.day %></td>
+                    <td><%= reservation.time %></td>
+                    <td>
+                        <%= link_to "削除", dashboard_reservation_path(reservation), method: :delete %>
+                    </td>
+                </tr>
         <% end %>
     </body>
+    </div>
 </table>

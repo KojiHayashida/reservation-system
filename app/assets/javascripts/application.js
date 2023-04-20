@@ -23,10 +23,11 @@
 //= require jquery.datetimepicker
 //= require moment/ja.js
 
-
-$(function(){
-    $('.datetimepicker').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
+$(document).on('turbolinks:load', function() {
+    $(function(){
+      $('.datetimepicker').datetimepicker({
+         timepicker:false,
+         format:'Y-m-d',
+      });
     });
 });

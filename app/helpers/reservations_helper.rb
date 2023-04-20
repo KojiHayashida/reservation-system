@@ -10,14 +10,16 @@ module ReservationsHelper
     end
 
 
-    #  # 予約可能か判定する
+    ## 予約可能か判定する
     def reservation_status(reservations, user_id, day, time)
-      if reservations.any?{|r| r[:user_id] == user_id && r[:day] == day.strftime("%Y-%m-%d") && r[:time] == time}
-        status = "reserved"
+      if day <= Date.today
+        status = "reservation_not_acceptable"
+      elsif reservations.any?{|r| r[:user_id] == user_id && r[:day] == day.strftime("%Y-%m-%d") && r[:time] == time}
+        status = "reserved"   ##予約済み
       elsif reservations.count { |r| r[:day] == day.strftime("%Y-%m-%d") && r[:time] == time } <2
-        status = "vacant"
+        status = "reservation_acceptable"     ##予約可能
       else
-        status = "full"
+        status = "reservation_not_acceptable"    ##予約不可
       end
       return status
     end

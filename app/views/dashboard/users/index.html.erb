@@ -4,22 +4,26 @@
 
     <!-- TODO 利用者絞り込みフォーム作成 -->
   <h2>利用者一覧</h2>
+  <hr>
 
 
-    <%= form_with url: dashboard_users_path, method: :get, local: true, class: "input-group" do |f| %>
+    <div class="w-50">
+      <%= form_with url: dashboard_users_path, method: :get, local: true, class: "input-group" do |f| %>
         <%= f.text_field :keyword, value: @keyword, class: "form-control input-group-prepend", placeholder: "キーワードを入力" %>
-      <span class="input-group-btn input-group-append">
-        <%= f.submit "検索",class: "btn btn-primary" %>
-      </span>
-    <% end %>
+        <span class="input-group-btn input-group-append">
+          <%= f.submit "検索",class: "btn btn-primary" %>
+        </span>
+      <% end %>
+    </div>
 
 
     <table class="table mt-5">
       <thead>
         <tr>
-          <th scope="col" class="w-25">ID</th>
+          <th scope="col">ID</th>
           <th scope="col">名前</th>
           <th scope="col">メールアドレス</th>
+          <th></th>
           <th></th>
         </tr>
       </thead>

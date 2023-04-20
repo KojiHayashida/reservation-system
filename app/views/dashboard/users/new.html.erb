@@ -1,7 +1,7 @@
 
 <div class="w-75">
     <h2>新規利用者登録フォーム</h2>
-    <%= form_with url: dashboard_users_path, model: User.new,  class: "form-horizontal", local: true do |f| %>
+    <%= form_with url: dashboard_users_path, model: @user,  class: "form-horizontal", local: true do |f| %>
       <div class="form-group row">
         <div class="col-sm-6">
           <%= f.label :family_name,'姓', class: "control-label" %>

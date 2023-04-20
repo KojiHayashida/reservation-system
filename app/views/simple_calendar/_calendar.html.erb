@@ -1,9 +1,9 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+
     <span class="calendar-title">
       <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>  <!-- TODO:1週間単位で送れるようにする -->
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
     <% reservations = Reservation.reservations_after_three_month %>
   </div>
 
@@ -11,7 +11,9 @@
     <thead>
       <% date_range.each_slice(14) do |week| %>
         <%= content_tag :tr, class: calendar.tr_classes_for(week) do %>
-          <td></td>
+          <td>
+            <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+          </td>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day), :style => 'width:1px' do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
@@ -21,7 +23,9 @@
               <% end %>
             <% end %>
           <% end %>
-          <td></td>
+          <td>
+            <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+          </td>
         <% end %>
       <% end %>
     </thead>
@@ -33,15 +37,18 @@
             <td><%= time %></td>
             <% week.each do |day| %>
               <td>
-              <% if reservation_status(reservations, current_user.id, day, time) == "vacant" %>
+              <% if reservation_status(reservations, current_user.id, day, time) === "reservation_acceptable" %>
                 <%= link_to new_reservation_path(day: day, time: time) do %>
                   <%= '○' %>
                 <% end %>
-              <% elsif reservation_status(reservations, current_user.id, day, time) == "reserved" %>
+              <% elsif reservation_status(reservations, current_user.id, day, time) === "reserved" %>
                 <%= '済' %>
-              <% else reservation_status(reservations, current_user.id, day, time) == "full" %>
+              <% elsif reservation_status(reservations, current_user.id, day, time) === "reservation_not_acceptable" %>
+                <%= '×' %>
+              <% else %>
                 <%= '×' %>
               <% end %>
+              <% puts day.inspect %>
             </td>
             <% end %>
             <td><%= time %></td>

@@ -1,14 +1,15 @@
 <div class="w-75">
 
     <h2>予約一覧</h2>
+    <hr>
 
 
     <div class="w-50">
-        <%= form_with url: dashboard_reservations_path, method: :get, local: true do |f| %>
-            <div class='input-group date datetimepicker '>
-                <%= f.text_field :picked_date, class: 'form-control datetimepicker' %>
-            </div>
-            <%= f.submit "検索", class: "submit-button" %>
+        <%= form_with url: dashboard_reservations_path, method: :get, local: true, class: "input-group" do |f| %>
+                <%= f.text_field :picked_date, class: 'form-control datetimepicker input-group-prepend' %>
+            <span class="input-group-btn input-group-append">
+                <%= f.submit "検索",class: "btn btn-primary" %>
+            </span>
         <% end %>
     </div>
 
