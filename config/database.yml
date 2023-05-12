@@ -16,6 +16,9 @@ test:
 
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  # database: myapp_production
+  # username: myapp
+  database: reservation_system_app_production
+  username: postgres
+  password: <%= Rails.application.credentials.db[:password] %>
+  host: <%= Rails.application.credentials.db[:hostname] %>
