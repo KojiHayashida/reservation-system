@@ -1,7 +1,7 @@
 server "54.168.97.28", user: "Koji_Hayashida", roles: %w{app db web}
 
 set :ssh_options, {
-  keys: %w( ~\.ssh\reservation_system_app.pem),
+  keys: %w( C:\Users\k1211\.ssh\reservation_system_app.pem),
   forward_agent: true,
   auth_methods: %w(publickey),
 }
