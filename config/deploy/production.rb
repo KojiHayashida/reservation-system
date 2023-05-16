@@ -1,10 +1,40 @@
-server "52.198.225.208", user: "ec2-user", roles: %w{app db web}
+lock '3.17.2'
+
+server 'http://52.198.225.208/', user: 'ec2-user', roles: %w{app db web}
+
+# アプリケーションの指定
+set :application, 'reservation-system'
+set :repo_url,  'git@github.com:KojiHayashida/reservation-system.git'
+
+# sharedディレクトリに入れるファイルを指定
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 set :ssh_options, {
-  keys: %w( C:\Users\k1211.ssh\reservation_system_app.pem),
-  forward_agent: true,
-  auth_methods: %w(publickey),
+  auth_methods: ['publickey'],
+  keys: [ ~/.ssh/reservation_system_app.pem],
 }
+
+# 保存しておく世代の設定
+set :keep_releases, 5
+
+# rbenvの設定
+set :rbenv_type, :user
+set :rbenv_ruby, 'アプリで使用しているrubyのバージョン'
+
+# ここからUnicornの設定
+# Unicornのプロセスの指定
+set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
+
+# Unicornの設定ファイルの指定
+set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
+
+# Unicornを再起動するための記述
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
 
 # server-based syntax
 # ======================
