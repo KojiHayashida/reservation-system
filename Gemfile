@@ -69,7 +69,7 @@ group :development do
   gem "capistrano-rails", require: false
   gem 'capistrano-rbenv'
   gem 'capistrano-rbenv-vars'
-  gem 'capistrano3-puma', '5.0.0'
+  gem 'capistrano3-unicorn'
 end
 
 group :test do
