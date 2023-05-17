@@ -11,7 +11,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 
 set :ssh_options, {
   auth_methods: ['publickey'],
-  keys: [ ~/.ssh/reservation_system_app.pem],
+  keys: [ '~/.ssh/reservation_system_app.pem'],
 }
 
 # 保存しておく世代の設定
