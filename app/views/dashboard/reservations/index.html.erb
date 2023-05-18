@@ -1,41 +1,33 @@
 <div class="w-75">
+  <h2>予約一覧</h2>
+  <hr>
+  <div class="w-50">
+    <%= form_with url: dashboard_reservations_path, method: :get, local: true, class: "input-group" do |f| %>
+        <%= f.text_field :picked_date, class: 'form-control datetimepicker input-group-prepend' %>
+      <span class="input-group-btn input-group-append">
+        <%= f.submit "検索",class: "btn btn-primary" %>
+      </span>
+    <% end %>
+  </div>
 
-    <h2>予約一覧</h2>
-    <hr>
-
-
-    <div class="w-50">
-        <%= form_with url: dashboard_reservations_path, method: :get, local: true, class: "input-group" do |f| %>
-                <%= f.text_field :picked_date, class: 'form-control datetimepicker input-group-prepend' %>
-            <span class="input-group-btn input-group-append">
-                <%= f.submit "検索",class: "btn btn-primary" %>
-            </span>
-        <% end %>
-    </div>
-
-
-    <table class="table mt-5">
-        <thead>
-            <tr>
-                <th scope="col">予約ID</th>
-                <th scope="col">名前</th>
-                <th scope="col">日付</th>
-                <th scope="col">時間</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @reservations.each do |reservation| %>
-            <tr>
-                <th scope="row"><%= reservation.id %></th>
-                <td><%= link_to reservation.user.full_name, dashboard_user_path(reservation.user_id) %></td>
-                <td><%= reservation.day %></td>
-                <td><%= reservation.time %></td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
-
-
-
-
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">予約ID</th>
+        <th scope="col">名前</th>
+        <th scope="col">日付</th>
+        <th scope="col">時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+      <tr>
+        <th scope="row"><%= reservation.id %></th>
+        <td><%= link_to reservation.user.full_name, dashboard_user_path(reservation.user_id) %></td>
+        <td><%= reservation.day %></td>
+        <td><%= reservation.time %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
