@@ -1,6 +1,7 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
     <% reservations = Reservation.reservations_after_three_month %>
+    <% start_date = Date.today.strftime("%Y-%m-%d") %>
   </div>
 
   <table class="table table-striped">
