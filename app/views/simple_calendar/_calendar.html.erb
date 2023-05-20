@@ -4,6 +4,7 @@
     <span class="calendar-title">
       <%= start_date.year %></span>
     <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+    <% Date.beginning_of_week = Time.now.strftime("%A").downcase.to_sym %>
     <% reservations = Reservation.reservations_after_three_month %>
   </div>
 
